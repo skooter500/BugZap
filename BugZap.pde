@@ -79,6 +79,7 @@ void splash()
 void reset()
 {
   score = 0;
+  gameCount = 0;
   resetBug();
   playerX = width / 2;
   playerY = height - 50;
@@ -137,10 +138,11 @@ void resetBug()
 {
   bugX = random(0, width);
   bugY = 10;
-  frame = 80.0f;
+  frame = 60;
 }
 
-float frame;
+int frame;
+int gameCount = 0;
 
 void game()
 {
@@ -176,21 +178,24 @@ void game()
      }     
    }   
    
-   if (frameCount % (int) frame == 0)
+   if (gameCount % frame == 0)
    {
-     bugX += random(0, 200) - 100;
+     bugX += random(-100, 100);
      bugY += 30;
      frame -= 1;
      playSound(bug);
    }
-   if (bugX + bugWidth > width)
-   {
-     bugX = width - bugWidth;
-   }
+   
+   gameCount ++;
    
    if (bugX < 0 )
    {
      bugX = 0;
+   }
+   
+   if (bugX + bugWidth > width)
+   {
+     bugX = width - bugWidth;
    }
    
    if (bugY + bugWidth > playerY)
