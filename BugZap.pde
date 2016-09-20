@@ -1,5 +1,5 @@
 import ddf.minim.*;
-import procontroll.*;
+//import procontroll.*;
 import de.ilu.movingletters.*;
 
 Minim minim;//audio context
@@ -21,9 +21,7 @@ float playerWidth = 40;
 float playerSpeed = 3;
 int score;
 
-boolean sketchFullScreen() {
-  return true;
-}
+
 
 void playSound(AudioPlayer sound)
 {
@@ -37,7 +35,7 @@ void playSound(AudioPlayer sound)
 
 void setup()
 {
-  size(displayWidth, displayHeight);
+  fullScreen(); //size(displayWidth, displayHeight);
   noCursor();
   
   for (font_size size:font_size.values())
@@ -178,7 +176,7 @@ void game()
      }     
    }   
    
-   if (gameCount % frame == 0)
+   if (frameCount % frame == 0)
    {
      bugX += random(-100, 100);
      bugY += 30;
@@ -186,7 +184,6 @@ void game()
      playSound(bug);
    }
    
-   gameCount ++;
    
    if (bugX < 0 )
    {
